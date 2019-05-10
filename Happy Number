@@ -1,0 +1,35 @@
+class Solution {
+    public boolean isHappy(int n) {
+        int count = 0;
+        int num = n;
+        int subNum = n;
+        int temp = 0;
+        int happy = 0;
+        for(int i = 0; i < String.valueOf(subNum).length(); i++){
+            temp = (int)(num/Math.pow(10,String.valueOf(subNum).length()-i-1));
+            System.out.println("temp: " + temp);
+            happy = happy + (int)(Math.pow(temp, 2));
+            System.out.println("happy: " + happy);
+            num = num - (int)(temp * Math.pow(10,String.valueOf(subNum).length()-i-1));
+            System.out.println("num: " + num);
+            System.out.println("i: " + i);
+            
+            if(String.valueOf(subNum).length() == i+1){
+                if(happy == 1){
+                return true;
+                }
+                else if(happy == n){
+                return false;
+                }
+                subNum = happy;
+                num = happy;
+                happy = 0;
+                i = -1;
+            }
+            count++;
+            if(count == 100){break;}
+            
+        }
+        return false;
+    }
+}
